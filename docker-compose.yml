@@ -11,13 +11,17 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+      UPLOAD_LIMIT: 2000M
     ports:
       - 3306:3306
     volumes:
       - ./mysql-data:/var/lib/mysql
 
-  adminer:
-    image: adminer
+
+  phpmyadmin:
+    image: phpmyadmin
     restart: always
     ports:
-      - 8080:8080
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
